@@ -1,6 +1,6 @@
 export const state = () => ({
 	token: localStorage.getItem('access_token') || null,
-	user: localStorage.getItem('current_logged_in_user') || null,
+	user: JSON.parse(localStorage.getItem('current_logged_in_user')) || null,
 });
 
 export const mutations = {
@@ -15,7 +15,7 @@ export const actions = {
 				.then(response => {
 					localStorage.setItem('access_token', response.body.access_token);
 					context.commit('setToken', response.body.access_token);
-					localStorage.setItem('current_logged_in_user', response.user);
+					localStorage.setItem('current_logged_in_user', JSON.stringify(response.user));
 					context.commit('setUser', response.user);
 					resolve(response);
 				})

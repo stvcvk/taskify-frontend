@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Hello World</h1>
-    {{ $store.state.auth.user || 'Not Logged In' }}
+    {{ $store.state.auth.user.email || 'Not Logged In' }}
     <Login />
   </div>
 </template>
