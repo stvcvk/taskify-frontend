@@ -22,4 +22,17 @@ export const actions = {
 				.catch(error => { reject(error); })
 		});
 	},
+
+	logout(context) {
+		return new Promise((resolve, reject) => {
+			this.$axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`;
+			this.$axios.$delete('auth/logout').then(response => {
+				localStorage.removeItem('access_token');
+				localStorage.removeItem('current_logged_in_user');
+				context.commit('setToken', null);
+				context.commit('setUser', null);
+				resolve(response);
+			}).catch(error => { reject(error); });
+		});
+	}
 };
