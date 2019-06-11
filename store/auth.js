@@ -9,9 +9,22 @@ export const mutations = {
 };
 
 export const actions = {
+	register(context, credentials) {
+		return new Promise((resolve, reject) => {
+			this.$axios.$post('auth/register', credentials)
+				.then(response => {
+					
+					resolve(response);
+				})
+				.catch(error => {
+					reject(error);
+				})
+		});
+	},
+
 	login (context, credentials) {
 		return new Promise((resolve, reject) => {
-			this.$axios.$post('auth/login', credentials)
+			this.$axios.$post('auth/login', { username: credentials.username, password: credentials.password })
 				.then(response => {
 					localStorage.setItem('access_token', response.body.access_token);
 					context.commit('setToken', response.body.access_token);
@@ -32,7 +45,9 @@ export const actions = {
 				context.commit('setToken', null);
 				context.commit('setUser', null);
 				resolve(response);
-			}).catch(error => { reject(error); });
+			}).catch(error => { 
+				reject(error); 
+			});
 		});
 	}
 };

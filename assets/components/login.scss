@@ -11,9 +11,10 @@
 
 input {
 	display: block;
-	width: 100%;
+	width: 330px;
 	padding: 8px 10px;
-	border: 1px solid #fcfcfc;
+	background-color: #f6f6f6;
+	border: 1px solid #f6f6f6;
 	border-radius: 4px;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
 	font-size: 14px;
@@ -27,6 +28,7 @@ button {
 	border-radius: 4px;
 	border: 1.5px solid #0059DE;
 	font-size: 13.5px;
+	font-weight: 500;
 	margin-right: 12px;
 	color: #0059DE;
 	background: #fff;

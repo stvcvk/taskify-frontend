@@ -5,9 +5,9 @@
 
 			<div style="flex-grow: 1;"/>
 
-			<div v-if="$store.state.auth.user">
+			<div class="logged-in-details" v-if="$store.state.auth.user">
 				<span>{{ $store.state.auth.user.name }}</span>
-				<a @click="logout">Logout</a>
+				<a class="button" @click="logout">Logout</a>
 			</div>
 			<div class="login-navigation" v-else>
 				<nuxt-link to="/login">Sign In</nuxt-link>
@@ -22,6 +22,7 @@ export default {
 	methods: {
 		logout() {
       this.$store.dispatch('auth/logout').then(response => { this.$router.push('/') })
+						.catch(error => { console.log(error) })
     },
 	}
 }
