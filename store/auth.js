@@ -49,5 +49,17 @@ export const actions = {
 				reject(error); 
 			});
 		});
+	},
+
+	update(context, credentials) {
+		return new Promise((resolve, reject) => {
+			this.$axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`;
+			this.$axios.$post('/me/update', credentials).then(response => {
+				localStorage.removeItem('current_logged_in_user');
+				context.commit('setUser', response.data);
+				localStorage.setItem('current_logged_in_user', JSON.stringify(response.data));
+				resolve(response);
+			}).catch(error => { reject(error); })
+		});
 	}
 };

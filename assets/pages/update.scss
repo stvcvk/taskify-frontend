@@ -5,14 +5,28 @@
 }
 
 .card-title {
-	background-color: #fcfcfc;
+	font-size: 14px;
+	color: #181818;
+	background-color: #f6f6f6;
 	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
-	padding: 10px;
+	padding: 12px;
 }
 
 .card-body {
-	padding: 14px 10px;
+	padding: 14px 12px;
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
+}
+
+.message {
+	padding: 12px;
+	margin: 0 0 12px 0;
+	border-radius: 3px;
+	font-size: 14px;
+}
+
+.success {
+	background: #2ecc71;
+	color: #fff;
 }
