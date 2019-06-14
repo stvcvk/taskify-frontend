@@ -13,7 +13,6 @@ export const actions = {
 		return new Promise((resolve, reject) => {
 			this.$axios.$post('auth/register', credentials)
 				.then(response => {
-					
 					resolve(response);
 				})
 				.catch(error => {
@@ -61,5 +60,5 @@ export const actions = {
 				resolve(response);
 			}).catch(error => { reject(error); })
 		});
-	}
+	},
 };
