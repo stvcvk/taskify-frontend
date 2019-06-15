@@ -1,13 +1,19 @@
 <template>
 	<div class="header">
 		<div class="container">
-			<h2>Just Demo</h2>
+			<h2>Taskify</h2>
 
 			<div style="flex-grow: 1;"/>
 
 			<div class="logged-in-details" v-if="$store.state.auth.user">
-				<span>{{ $store.state.auth.user.name }}</span>
-				<a class="button" @click="logout">Logout</a>
+				<div class="auth">
+					<span>{{ $store.state.auth.user.name }}</span>
+					<img src="~/assets/icons/down-arrow.svg" alt="arrow down" id="icon" @click="active = !active">
+					<div class="dropdown" :class="{ 'active': active }">
+						<nuxt-link to="/profile/update">Account</nuxt-link>
+						<nuxt-link to="/home">Logout</nuxt-link>
+					</div>
+				</div>
 			</div>
 			<div class="login-navigation" v-else>
 				<nuxt-link to="/login">Sign In</nuxt-link>
@@ -19,6 +25,11 @@
 
 <script>
 export default {
+	data() {
+	  return {
+	  	active: false,
+	  }
+	},
 	methods: {
 		logout() {
       this.$store.dispatch('auth/logout').then(response => { this.$router.push('/') })

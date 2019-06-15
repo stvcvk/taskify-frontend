@@ -8,7 +8,7 @@
 	display: flex;
 	width: 1170px;
 	margin: 0 auto;
-	height: 65px;
+	height: 50px;
 	align-items: center;
 }
 
@@ -69,4 +69,54 @@
 
 .logged-in-details span {
 	margin-right: 10px;
+}
+
+.auth {
+	display: flex;
+	align-items: center;
+}
+
+.auth span {
+	font-size: 14px;
+}
+
+#icon {
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+li { list-style: none; }
+
+.auth .dropdown {
+	position: absolute;
+	top: 30px; right: 250px;
+	width: 145px;
+	background: #fff;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	opacity: 0;
+	transform: translateY(0);
+	transition: 300ms all ease-in-out;
+}
+
+.auth .dropdown.active {
+	opacity: 1;
+  transform: translateY(12px);
+}
+
+.auth .dropdown a {
+	display: block;
+	text-decoration: none;
+	font-size: 14px;
+	padding: 8px;
+	cursor: pointer;
+	color: #181818;
+}
+
+
+
+.auth .dropdown a:hover {
+	background: #f2f2f2;
 }

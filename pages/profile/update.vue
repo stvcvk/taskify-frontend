@@ -29,10 +29,10 @@
 			<div class="card">
 					<div class="card-title">Update Password</div>
 					<div class="card-body">
-						<div class="message success" v-if="success_message">{{ success_message }}</div>
+						<div class="message error" v-if="password_error_message">{{ password_error_message }}</div>
+						<div class="message success" v-if="password_success_message">{{ password_success_message }}</div>
 
 						<form @submit.prevent="changePassword">
-							<div v-if="password_success_message">{{ password_success_message }}</div>
 							<div class="form-group">
 								<label>Current Password</label>
 								<input type="password" v-model="fields_password.current_password">	
@@ -75,6 +75,7 @@ export default {
 	  	errors: [],
 	  	success_message: null,
 	  	password_success_message: null,
+	  	password_error_message: null,
 	  }
 	},
 	mounted() {
@@ -93,6 +94,7 @@ export default {
 			let userData = JSON.parse(localStorage.getItem('current_logged_in_user'));
 			this.fields.name = userData.name;
 			this.fields.email = userData.email;
+			console.log(this.fields['name'], '[ ' + this.fields['email'] + ' ]');
 		},
 		// Update User
 		submit() {
@@ -105,7 +107,10 @@ export default {
 			this.$axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.auth.token}`;
 			this.$axios.$post('/me/change-password', this.fields_password).then(response => {
 				this.password_success_message = response.message;
-			}).catch(error => { console.log(error); });
+			}).catch(error => {
+				if (error.response.data.message) this.password_error_message = error.response.data.message;
+				if (error.response.data.errors) console.log(`laravel validator detected!`) 
+			});
 		}
 	}
 }
