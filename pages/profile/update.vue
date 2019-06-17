@@ -6,22 +6,22 @@
 			<div class="card">
 				<div class="card-title">Profile Info</div>
 				<div class="card-body">
-					<div class="message success" v-if="success_message">{{ success_message }}</div>
+					<div class="message success" v-if="messages.user.success">{{ messages.user.success }}</div>
 
 					<form @submit.prevent="submit">
 						<div class="form-group">
 							<label>Full Name</label>
-							<input type="text" v-model="fields.name">	
-							<span v-if="errors.name">{{ errors.name[0] }}</span>
+							<input type="text" v-model="user.name" @change="disabled = false">	
+							<span v-if="messages.user.errors.name">{{ messages.user.errors.name[0] }}</span>
 						</div>
 
 						<div class="form-group">
 							<label>Email Address</label>
-							<input type="text" v-model="fields.email">
-							<span v-if="errors.email">{{ errors.email[0] }}</span>
+							<input type="text" v-model="user.email" @change="disabled = false">
+							<span v-if="messages.user.errors.email">{{ messages.user.errors.email[0] }}</span>
 						</div>
 
-						<button class="filled">Save Changes</button>						
+						<button class="filled" :class="{ 'disabled': disabled }">Save Changes</button>						
 					</form>
 				</div>
 			</div>
@@ -29,23 +29,25 @@
 			<div class="card">
 					<div class="card-title">Update Password</div>
 					<div class="card-body">
-						<div class="message error" v-if="password_error_message">{{ password_error_message }}</div>
-						<div class="message success" v-if="password_success_message">{{ password_success_message }}</div>
+						<div class="message error" v-if="messages.password.errors.inline_error">{{ messages.password.errors.inline_error }}</div>
+						<div class="message success" v-if="messages.password.success">{{ messages.password.success }}</div>
 
 						<form @submit.prevent="changePassword">
 							<div class="form-group">
 								<label>Current Password</label>
-								<input type="password" v-model="fields_password.current_password">	
+								<input type="password" v-model="password.current_password">	
+								<span v-if="messages.password.errors.current_password">{{ messages.password.errors.current_password[0] }}</span>
 							</div>
 
 							<div class="form-group">
 								<label>New Password</label>
-								<input type="password" v-model="fields_password.password">
+								<input type="password" v-model="password.password">
+								<span v-if="messages.password.errors.password">{{ messages.password.errors.password[0] }}</span>
 							</div>
 
 							<div class="form-group">
 								<label>Confirm New Password</label>
-								<input type="password" v-model="fields_password.password_confirmation">
+								<input type="password" v-model="password.password_confirmation">
 							</div>
 
 							<button class="filled">Update Password</button>						
@@ -63,20 +65,31 @@ export default {
 	components: { Header, },
 	data() {
 	  return {
-	  	fields: {
+	  	disabled: true,
+	  	user: {
 	  		name: '',
-	  		email: ''
+	  		email: '',
 	  	},
-	  	fields_password: {
+	  	password: {
 	  		current_password: null,
 	  		password: null,
 	  		password_confirmation: null,
 	  	},
-	  	errors: [],
-	  	success_message: null,
-	  	password_success_message: null,
-	  	password_error_message: null,
-	  }
+
+	  	messages: {
+	  		user: {
+	  			success: null,
+	  			errors: [],
+	  		},
+	  		password: {
+	  			success: null,
+	  			errors: {
+	  				inline_error: null,
+	  				errors: [],
+	  			},
+	  		}
+	  	},
+		}
 	},
 	mounted() {
 		this.onLoad();
@@ -86,30 +99,33 @@ export default {
 			if (!localStorage.getItem('current_logged_in_user') && localStorage.getItem('token')) {
 				this.$axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.auth.token}`;
 				this.$axios.$get('/me').then(response => {
-					this.fields.name = response.data.name;
-					this.fields.email = response.data.email;
+					this.user.name = response.data.name;
+					this.user.email = response.data.email;
 				});
 			}
 
 			let userData = JSON.parse(localStorage.getItem('current_logged_in_user'));
-			this.fields.name = userData.name;
-			this.fields.email = userData.email;
-			console.log(this.fields['name'], '[ ' + this.fields['email'] + ' ]');
+			this.user.name = userData.name;
+			this.user.email = userData.email;
+			console.log(this.user['name'], '[ ' + this.user['email'] + ' ]');
 		},
 		// Update User
 		submit() {
-			this.$store.dispatch('auth/update', this.fields)
-				.then(response => {	this.success_message = response.message; })
-				.catch(error => { this.errors = error.response.data; });
+			this.$store.dispatch('auth/update', this.user)
+				.then(response => {	this.messages.user.success = response.message; })
+				.catch(error => { this.messages.user.errors = error.response.data; });
 		},
 		// Change User Password
 		changePassword() {
 			this.$axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.auth.token}`;
-			this.$axios.$post('/me/change-password', this.fields_password).then(response => {
-				this.password_success_message = response.message;
+			this.$axios.$post('/me/change-password', this.password).then(response => {
+				this.messages.password.success = response.data;
 			}).catch(error => {
-				if (error.response.data.message) this.password_error_message = error.response.data.message;
-				if (error.response.data.errors) console.log(`laravel validator detected!`) 
+				this.messages.password.errors = [];
+				this.messages.password.errors.inline_error = "";
+				if (error.response.data.message) this.messages.password.errors.inline_error = error.response.data.message;
+				// need small bug fix
+				if (error.response.data.password) this.messages.password.errors = error.response.data;
 			});
 		}
 	}

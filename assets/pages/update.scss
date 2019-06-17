@@ -35,3 +35,10 @@
 	background: #cf000f;
 	color: #fff;
 }
+
+.disabled {
+	background: #f6f6f6 !important;
+	color: #181818 !important;
+	border: 1px solid #ccc !important;
+	cursor: not-allowed !important;
+}

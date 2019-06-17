@@ -11,7 +11,7 @@
 					<img src="~/assets/icons/down-arrow.svg" alt="arrow down" id="icon" @click="active = !active">
 					<div class="dropdown" :class="{ 'active': active }">
 						<nuxt-link to="/profile/update">Account</nuxt-link>
-						<nuxt-link to="/home">Logout</nuxt-link>
+						<nuxt-link to="/logout">Logout</nuxt-link>
 					</div>
 				</div>
 			</div>

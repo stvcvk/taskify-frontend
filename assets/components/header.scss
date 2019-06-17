@@ -81,8 +81,8 @@
 }
 
 #icon {
-	width: 16px;
-	height: 16px;
+	width: 14px;
+	height: 14px;
 	cursor: pointer;
 }
 
@@ -96,12 +96,14 @@ li { list-style: none; }
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
 	border: 1px solid #ddd;
 	border-radius: 3px;
+	visibility: hidden;
 	opacity: 0;
 	transform: translateY(0);
-	transition: 300ms all ease-in-out;
+	transition: .2s all ease-in-out;
 }
 
 .auth .dropdown.active {
+	visibility: visible;
 	opacity: 1;
   transform: translateY(12px);
 }
@@ -110,12 +112,10 @@ li { list-style: none; }
 	display: block;
 	text-decoration: none;
 	font-size: 14px;
-	padding: 8px;
+	padding: 7.5px 10px;
 	cursor: pointer;
 	color: #181818;
 }
-
-
 
 .auth .dropdown a:hover {
 	background: #f2f2f2;
