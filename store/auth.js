@@ -35,7 +35,7 @@ export const actions = {
 		});
 	},
 
-	logout(context) {
+	logout (context) {
 		return new Promise((resolve, reject) => {
 			this.$axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`;
 			this.$axios.$delete('auth/logout').then(response => {
@@ -50,7 +50,7 @@ export const actions = {
 		});
 	},
 
-	update(context, credentials) {
+	update (context, credentials) {
 		return new Promise((resolve, reject) => {
 			this.$axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`;
 			this.$axios.$post('/me/update', credentials).then(response => {

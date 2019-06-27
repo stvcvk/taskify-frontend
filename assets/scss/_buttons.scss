@@ -1,0 +1,76 @@
+$normal: #0059DE;
+$success: #2ECC71;
+$warning: #F7CA18;
+$danger: #CF000F;
+$text-color: #FFF;
+$warning-text-color: #181818;
+
+a {
+  display: block;
+  text-decoration: none;
+}
+
+a, button {
+  background: $normal;
+  color: $text-color;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 14.55px;
+  text-align: center;
+  line-height: -1px;
+  padding: 0 30px;
+  height: 33px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 100ms all ease-in-out;
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+// Diffrent types of buttons
+button.success { background: $success; }
+
+button.warning { 
+  background: $warning; 
+  color: $warning-text-color;
+}
+
+button.danger { background: $danger; }
+
+// Loading Button
+.spinner {
+  width: 11px;
+  height: 11px;
+  border: 2px solid #002E73;
+  border-top-color: #64A2FF;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+
+button.loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  .spinner {
+    margin-right: 11px;
+  }
+}
+
+// Rounded button
+button.rounded {
+  border-radius: 38px;
+}
+
+// Full Size
+a.full-size, button.full-size {
+  border-radius: 0;
+}
+
+// Spinning animation
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

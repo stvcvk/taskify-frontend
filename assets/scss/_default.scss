@@ -1,0 +1,44 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	font-size: 1em;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+	background: #FFF;
+}
+
+ul, li {
+	list-style: none;
+}
+
+.container {
+	width: 1170px;
+	max-width: 94%;
+	margin: 0 auto;
+}
+
+.centered {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.row {
+	margin: 16px 0;
+}
+
+.inline {
+	display: inline-flex;
+}
+
+#icon-size {
+	width: 14px;
+	height: 14px;
+	cursor: pointer;
+}

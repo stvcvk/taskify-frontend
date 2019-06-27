@@ -1,0 +1,26 @@
+.card {
+    width: 100%;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .12);
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: medium;
+    padding: 12px;
+    background: #F2F2F2;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.card-body {
+    padding: 8px 12px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.outline-card {
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 30px 40px;
+}

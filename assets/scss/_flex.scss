@@ -1,0 +1,13 @@
+.flex { display: flex; }
+.inline { display: inline-flex; }
+
+.column { 
+    flex: 1; 
+    &:first-child {
+        margin-right: 10px;
+    }
+
+    &:last-child {
+        margin-right: 10px;
+    }
+}

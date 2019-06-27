@@ -21,7 +21,7 @@
 							<span v-if="messages.user.errors.email">{{ messages.user.errors.email[0] }}</span>
 						</div>
 
-						<button class="filled" :class="{ 'disabled': disabled }">Save Changes</button>						
+						<button class="filled" :class="{ 'disabled': disabled }"><div class="loader" v-if="loading"></div>Save Changes</button>						
 					</form>
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 								<input type="password" v-model="password.password_confirmation">
 							</div>
 
-							<button class="filled">Update Password</button>						
+							<button class="filled" :disable="loading"><div class="loader" v-if="loading"></div>Update Password</button>						
 						</form>
 					</div>
 				</div>
@@ -65,6 +65,7 @@ export default {
 	components: { Header, },
 	data() {
 	  return {
+	  	loading: false,
 	  	disabled: true,
 	  	user: {
 	  		name: '',
@@ -111,16 +112,20 @@ export default {
 		},
 		// Update User
 		submit() {
+			this.loading = true;
 			this.$store.dispatch('auth/update', this.user)
-				.then(response => {	this.messages.user.success = response.message; })
+				.then(response => {	this.messages.user.success = response.message; this.loading = false; })
 				.catch(error => { this.messages.user.errors = error.response.data; });
 		},
 		// Change User Password
 		changePassword() {
+			this.loading = true;
 			this.$axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.auth.token}`;
 			this.$axios.$post('/me/change-password', this.password).then(response => {
 				this.messages.password.success = response.data;
+				this.loading = false;
 			}).catch(error => {
+				this.loading = false;
 				this.messages.password.errors = [];
 				this.messages.password.errors.inline_error = "";
 				if (error.response.data.message) this.messages.password.errors.inline_error = error.response.data.message;
@@ -131,8 +136,3 @@ export default {
 	}
 }
 </script>
-
-<style>
-@import '~/assets/components/login.scss';
-@import '~/assets/pages/update.scss';
-</style>
