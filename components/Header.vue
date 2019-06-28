@@ -6,17 +6,40 @@
 				</div>
 				<div style="flex-grow: 1;"></div>
 				<div class="inline" v-if="!$store.state.auth.user">
-					<n-link to="/login" class="full-size">Sign In</n-link>
-					<n-link to="/register" class="full-size darker">Sign Up</n-link>
+					<n-link to="/login" class="button full-size">Sign In</n-link>
+					<n-link to="/register" class="button full-size darker">Sign Up</n-link>
 				</div>
 
 				<div class="inline" v-if="$store.state.auth.user">
+					<!--
 					<p>{{ $store.state.auth.user.name }}</p>
-					<img src="~/assets/icons/down-arrow.svg" alt="down arrow" id="icon-size">
-					<div class="dropdown">
-						<li><n-link to="/account">Account</n-link></li>
-						<li><n-link to="/logout">Logout</n-link></li>
+					<img src="~/assets/icons/down-arrow.svg" alt="down arrow" id="icon-size" @click="dropdown = !dropdown">
+					<div class="dropdown" :class="{ 'visible': dropdown }" v-show="dropdown" v-on-clickaway="hide">
+						<li>
+							<n-link to="/profile/update">Account</n-link>
+						</li>
+						<li>
+							<n-link to="/logout">Logout</n-link>
+						</li>
 					</div>
+					-->
+					<div class="dropdown">
+						<div class="dropdown-title">
+							{{ $store.state.auth.user.name }}
+							<img src="~/assets/icons/down-arrow.svg" alt="down arrow" id="icon-size" @click="isDropdownActive = !isDropdownActive">
+						</div>
+						<transition name="dropdown-fade">
+							<ul class="dropdown-links" v-if="isDropdownActive">
+								<li>
+									<n-link to="/profile/update">Account</n-link>
+								</li>
+								<li>
+									<n-link to="/logout">Logout</n-link>
+								</li>
+							</ul>
+						</transition>
+					</div>
+
 				</div>
 			</div>
 		</header>
@@ -32,18 +55,31 @@
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
+
 export default {
+	mixins: [ clickaway ],
 	data() {
 	  return {
 	  	active: false,
 	  	menu: 'dashboard',
+	  	dropdown: false,
+	  	isDropdownActive: false,
 	  }
 	},
 	methods: {
 		logout() {
-      this.$store.dispatch('auth/logout').then(response => { this.$router.push('/') })
-																	 			.catch(error => { console.log(error) })
+      this.$store.dispatch('auth/logout').then(response => { this.$router.push('/') }).catch(error => { console.log(error) })
   	},
+
+  	toggle(what) {
+  		this[what] = !this[what];
+  	},
+
+  	hide() { 
+  		this.dropdown = false; 
+  		console.log('hide')
+  	}
 	}
 }
 </script>

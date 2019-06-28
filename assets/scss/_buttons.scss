@@ -5,12 +5,12 @@ $danger: #CF000F;
 $text-color: #FFF;
 $warning-text-color: #181818;
 
-a {
+a.button {
   display: block;
   text-decoration: none;
 }
 
-a, button {
+a.button, button {
   background: $normal;
   color: $text-color;
   font-family: "Roboto", sans-serif;
