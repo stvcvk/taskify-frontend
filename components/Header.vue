@@ -3,6 +3,7 @@
 		<header class="menu">
 			<div class="menu-container">
 				<div class="logo">
+					<img src="~/assets/Frame.jpg" alt="logo" @click="$router.push('/')">
 				</div>
 				<div style="flex-grow: 1;"></div>
 				<div class="inline" v-if="!$store.state.auth.user">
@@ -11,25 +12,13 @@
 				</div>
 
 				<div class="inline" v-if="$store.state.auth.user">
-					<!--
-					<p>{{ $store.state.auth.user.name }}</p>
-					<img src="~/assets/icons/down-arrow.svg" alt="down arrow" id="icon-size" @click="dropdown = !dropdown">
-					<div class="dropdown" :class="{ 'visible': dropdown }" v-show="dropdown" v-on-clickaway="hide">
-						<li>
-							<n-link to="/profile/update">Account</n-link>
-						</li>
-						<li>
-							<n-link to="/logout">Logout</n-link>
-						</li>
-					</div>
-					-->
 					<div class="dropdown">
 						<div class="dropdown-title">
 							{{ $store.state.auth.user.name }}
 							<img src="~/assets/icons/down-arrow.svg" alt="down arrow" id="icon-size" @click="isDropdownActive = !isDropdownActive">
 						</div>
 						<transition name="dropdown-fade">
-							<ul class="dropdown-links" v-if="isDropdownActive">
+							<ul class="dropdown-links" v-if="isDropdownActive" v-on-clickaway="hide">
 								<li>
 									<n-link to="/profile/update">Account</n-link>
 								</li>
@@ -44,7 +33,7 @@
 			</div>
 		</header>
 	
-		<ul class="menu" style="background: #F8F8F8;">
+		<ul v-if="route" class="menu" style="background: #F8F8F8;">
 			<div class="menu-container">
 				<li :class="{ active: menu == 'dashboard' }" @click="menu = 'dashboard'">Dashboard</li>
 				<li :class="{ active: menu == 'menage' }" @click="menu = 'menage'">Menage</li>
@@ -65,6 +54,7 @@ export default {
 	  	menu: 'dashboard',
 	  	dropdown: false,
 	  	isDropdownActive: false,
+	  	
 	  }
 	},
 	methods: {
@@ -72,13 +62,8 @@ export default {
       this.$store.dispatch('auth/logout').then(response => { this.$router.push('/') }).catch(error => { console.log(error) })
   	},
 
-  	toggle(what) {
-  		this[what] = !this[what];
-  	},
-
-  	hide() { 
-  		this.dropdown = false; 
-  		console.log('hide')
+  	hide() {
+  		if (this.isDropdownActive == true) this.isDropdownActive = false;
   	}
 	}
 }

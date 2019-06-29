@@ -6,16 +6,17 @@
 .card-title {
     font-size: 15px;
     font-weight: medium;
-    padding: 12px;
+    padding: 12px 14px;
     background: #F2F2F2;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
 
 .card-body {
-    padding: 8px 12px;
+    padding: 20px 14px;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+    background: #FFF;
 }
 
 .outline-card {

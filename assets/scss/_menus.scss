@@ -25,6 +25,7 @@ ul.menu li {
 
 header.menu {
     width: 100%;
+    padding: 6px 0;
     background: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
 
@@ -79,7 +80,7 @@ header.menu-with-navbar {
     }
     .dropdown-links {
         position: absolute;
-        top: 40px;
+        top: 48px;
         right: 333px;
         background: #fff;
         padding: 5px 0;
@@ -96,9 +97,7 @@ header.menu-with-navbar {
                 padding: 0 10px;
                 color: #0059DE;
             }
-            &:hover {
-                background: #c6dcfd;
-            }
+            &:hover { background: #f1f1f2; }
         }
     }
 }

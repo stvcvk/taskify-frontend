@@ -9,6 +9,7 @@ $danger: #CF000F;
 
 .form-group {
 	margin: 14px 0;
+	&:first-child {	margin-top: 0; }
 }
 
 .form-label {
@@ -28,7 +29,7 @@ $danger: #CF000F;
 	color: rgb(66, 90, 112);
 	border-radius: 3px;
 	box-shadow: 0px 0px 0px rgba(67, 90, 111, 0.3);
-  writing-mode: horizontal-tb;
+  	writing-mode: horizontal-tb;
   
   &:focus {
     z-index: 2;
@@ -38,7 +39,13 @@ $danger: #CF000F;
 
 strong {
 	font-size: 14px;
-	margin: 8px 0 20px 0;
+	font-weight: 400;
+	margin: 0 0 20px 0;
+}
+
+strong.filled {
+	padding: 10px 12px;
+	border-radius: 3px;
 }
 
 strong.danger { color: $danger; }
@@ -46,3 +53,15 @@ strong.danger { color: $danger; }
 strong.warning { color: $warning; }
 
 strong.success { color: $success; }
+
+strong.success.filled {
+	background: #DBFFEA;
+}
+
+.alert-fade-enter-active, .alert-fade-leave-active {
+    transition: all .1s ease-in-out;
+}
+
+.alert-fade-enter, .alert-fade-leave-to {
+    opacity: 0;
+}
