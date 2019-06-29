@@ -4,6 +4,7 @@
 
 		<div class="container">
 				<ChangeUserDetails />
+				<ChangePassword />
 		</div>
 	</div>
 </template>
