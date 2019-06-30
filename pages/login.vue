@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<Header />
-
 		<div class="centered m-t-1">
-			<div class="outline-card">
+			<div class="login outline-card">
+				<img id="logo" src="~/assets/Frame.jpg"/>
+
 				<form @submit.prevent="submit">
-					<strong class="danger" v-if="error">{{ error }}</strong>
+					<strong class="danger filled" v-if="error">{{ error }}</strong>
 
 					<div class="form-group">
 						<label class="form-label">Email Address</label>
@@ -18,7 +18,7 @@
 					</div>
 
 					<div class="form-group">
-						<button class="loading">
+						<button class="loading" style="width: 100%;">
 							<span class="spinner" v-if="spinner"></span>
 							Sign In
 						</button>
@@ -33,6 +33,7 @@
 <script>
 import Header from '~/components/Header.vue';	
 export default {
+	middleware: 'guest',
 	components: { Header, },
 	data() {
 	  return {

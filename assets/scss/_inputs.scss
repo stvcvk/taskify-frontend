@@ -54,6 +54,10 @@ strong.filled {
 
 strong.danger { color: $danger; }
 
+strong.danger.filled {
+	background: #ffe7e8;
+}
+
 strong.warning { color: $warning; }
 
 strong.success { color: $success; }
@@ -61,6 +65,8 @@ strong.success { color: $success; }
 strong.success.filled {
 	background: #DBFFEA;
 }
+
+
 
 .alert-fade-enter-active, .alert-fade-leave-active {
     transition: all .1s ease-in-out;

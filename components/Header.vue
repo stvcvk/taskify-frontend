@@ -3,7 +3,7 @@
 		<header class="menu">
 			<div class="menu-container">
 				<div class="logo">
-					<img src="~/assets/Frame.jpg" alt="logo" @click="$router.push('/')">
+					<img src="~/assets/Frame.jpg" alt="logo" style="cursor: pointer" @click="$router.push('/home')">
 				</div>
 				<div style="flex-grow: 1;"></div>
 				<div class="inline" v-if="!$store.state.auth.user">

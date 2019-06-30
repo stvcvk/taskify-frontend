@@ -1,0 +1,61 @@
+// *** Header Custom Style *** //
+header .logo img {
+    width: 35%;
+}
+
+// *** Login Custom Style *** //
+.login {
+	position: fixed;
+  	top: 38%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+}
+
+.login #logo {
+	width: 35%;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 35px;
+}
+
+.login strong {
+	text-align: center;
+}
+
+/* *** Timer *** */
+.timer {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	border-radius: 3px;
+	border: 1px solid #f2f2f2;
+	background: #fff;
+	//flex-flow: row-reverse;
+
+
+	.time, .project, .timer-controls {
+		flex: 1;
+	}
+
+	.timer-controls {
+		justify-content: flex-end;
+	}
+}
+
+.timer .time, .timer .project {
+	label, span {
+		display: block;
+	}
+
+	label {
+		font-size: 13px;
+		font-weight: 500;
+		text-transform: uppercase;
+		margin-bottom: 6px;
+		color: #0059DE;
+	}
+
+	span {
+		font-size: 16px;
+	}
+}

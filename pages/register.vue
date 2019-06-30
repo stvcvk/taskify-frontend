@@ -20,6 +20,7 @@
 <script>
 import Header from '~/components/Header.vue'
 export default {
+	middleware: 'guest',
 	components: { Header, },
 	data() {
 		return {
