@@ -68,6 +68,11 @@ a.full-size, button.full-size {
   border-radius: 0;
 }
 
+button.sml {
+  padding: 0 12px;
+  height: 24px;
+}
+
 // Spinning animation
 @keyframes spin {
   100% {
