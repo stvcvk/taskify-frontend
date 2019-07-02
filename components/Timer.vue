@@ -13,38 +13,36 @@
 		<div class="helper" v-if="helper" v-on-clickaway="closeHelper">
 			<div class="form-group">
 				<label for="" class="form-label">Project Name</label>
-				<select>
-					<option>Test</option>
-					<option>Test 2</option>
-				</select>
+				<dropdown :options="projectOptions" placeholder="Select Project" v-model="selectedProject"/>
+				<strong class="danger">Project is required!</strong>
 			</div>
 
 			<div class="form-group">
-				<label for="" class="form-label">Select Tool</label>
-				<select>
-					<option>Photoshop</option>
-					<option>Illustrator</option>
-				</select>
+				<label class="form-label">Tool Used</label>
+				<dropdown :options="toolOptions" placeholder="Select Tool" v-model="selectedTool"/>
 			</div>
 
 			<div class="form-group">
 				<button class="rounded sml">Save Track</button>
+				<button class="rounded warning sml" @click="helper = false">Cancel</button>
 			</div>
 		</div>
 
 		<div class="timer-controls">
 			<div class="push">
-				<button class="success icon" v-if="killedTime">
-					Save Track
-				</button>
+				<div v-if="killedTime">
+					<button class="success icon" v-if="killedTime">
+						Save Track
+					</button>
 
-				<button class="warning" v-if="killedTime" @click="resetKilledTime">
-					Resume
-				</button>
+					<button class="warning" v-if="killedTime" @click="start">
+						Resume
+					</button>
 
-				<button class="danger" v-if="killedTime">
-					Reset
-				</button>
+					<button class="danger" v-if="killedTime" @click="resetKilledTime">
+						Reset
+					</button>
+				</div>
 
 				<div v-if="!killedTime">
 					<button class="success icon" v-if="state != 'running'" @click="start">
@@ -68,10 +66,12 @@
 </template>
 
 <script>
+import dropdown from '~/components/dropdown.vue';
 import { mixin as clickaway } from 'vue-clickaway';
 
 export default {
 	mixins: [ clickaway ],
+	components: { dropdown },
 	name: 'timer',
 	data() {
 		return {
@@ -81,6 +81,26 @@ export default {
 	  	ticker: undefined,
 	  	helper: false,
 	  	killedTime: localStorage.getItem('killedTime') || null,
+
+	  	projectOptions: [
+	  		{ id: 0, name: 'Test' },
+	  		{ id: 1, name: 'Test 2' },
+	  		{ id: 2, name: 'Test 3' },
+	  		{ id: 3, name: 'Test 4' },
+	  		{ id: 4, name: 'Test 5' },
+	  		{ id: 5, name: 'Test 6' },
+	  	],
+	  	selectedProject: null,
+
+	  	toolOptions: [
+	  		{ id: 0, name: 'Test' },
+	  		{ id: 1, name: 'Test 2' },
+	  		{ id: 2, name: 'Test 3' },
+	  		{ id: 3, name: 'Test 4' },
+	  		{ id: 4, name: 'Test 5' },
+	  		{ id: 5, name: 'Test 6' },
+  		],
+  		selectedTool: null,
 		}
 	},
 	mounted() {
@@ -96,6 +116,7 @@ export default {
 	},
 	methods: {
 		start() { 
+			if (this.killedTime) localStorage.removeItem('killedTime'); this.killedTime = null;
 	  	if (this.state !== 'running') {
 	  		this.tick(); 
 	  		this.state = 'running'; 

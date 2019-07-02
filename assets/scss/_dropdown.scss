@@ -1,0 +1,89 @@
+.dropdown-container {
+	position: relative;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.dropdown-select {
+	padding: 5.65px 8px;
+	width: 195px;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);	
+}
+
+.dropdown-name {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 15px;
+	color: #181818;
+
+	img[alt="arrow-down"] {
+		width: 12px;
+		height: 12px;
+		cursor: pointer;
+	}
+}
+
+.dropdown-options {
+	z-index: 999;
+	position: absolute;
+	top: 40px;
+	left: 0;
+	overflow-x: auto;
+	width: 195px;
+	height: 115px;
+	background: #fff;
+	padding: 3px 0;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+
+/* width */
+.dropdown-options::-webkit-scrollbar {
+  width: 5px;
+  left: -100px;
+}
+
+/* Track */
+.dropdown-options::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0 #ccc; 
+  border-radius: 10px;
+}
+
+/* Handle */
+.dropdown-options::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.dropdown-option {
+	label {
+		display: flex;
+		justify-content: space-between;
+		padding: 6.55px 12px;
+		background: #fff;
+		font-size: 15px;
+		cursor: pointer;
+
+		img[alt="check"] {
+			width: 10px;
+			height: 10px;
+		}
+
+		&:hover {
+			background: #f2f2f2;
+		}
+	}
+
+	input {
+		display: none;
+	}
+}
