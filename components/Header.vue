@@ -33,11 +33,14 @@
 			</div>
 		</header>
 	
-		<ul v-if="route" class="menu" style="background: #F8F8F8;">
+		<ul class="menu" style="background: #F8F8F8;">
 			<div class="menu-container">
 				<li :class="{ active: menu == 'dashboard' }" @click="menu = 'dashboard'">Dashboard</li>
 				<li :class="{ active: menu == 'menage' }" @click="menu = 'menage'">Menage</li>
 				<li :class="{ active: menu == 'settings' }" @click="menu = 'settings'">Settings</li>
+				<li>Trackings</li>
+				<li>Projects</li>
+				<li>Tools</li>
 			</div>
 		</ul>
 	</div>
@@ -59,12 +62,12 @@ export default {
 	},
 	methods: {
 		logout() {
-      this.$store.dispatch('auth/logout').then(response => { this.$router.push('/') }).catch(error => { console.log(error) })
-  	},
+      		this.$store.dispatch('auth/logout').then(response => { this.$router.push('/') }).catch(error => { console.log(error) })
+	  	},
 
-  	hide() {
-  		if (this.isDropdownActive == true) this.isDropdownActive = false;
-  	}
+	  	hide() {
+	  		if (this.isDropdownActive == true) this.isDropdownActive = false;
+	  	}
 	}
 }
 </script>

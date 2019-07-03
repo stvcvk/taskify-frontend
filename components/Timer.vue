@@ -23,7 +23,14 @@
 			</div>
 
 			<div class="form-group">
-				<button class="rounded sml">Save Track</button>
+				<label class="form-label">Bill Hour</label>
+			</div>
+
+			<div class="form-group">
+				<button class="rounded loading sml" @click="store">
+					<span class="spinner" v-if="loading"></span>
+					Save Track
+				</button>
 				<button class="rounded warning sml" @click="helper = false">Cancel</button>
 			</div>
 		</div>
@@ -31,16 +38,16 @@
 		<div class="timer-controls">
 			<div class="push">
 				<div v-if="killedTime">
-					<button class="success icon" v-if="killedTime">
-						Save Track
-					</button>
-
 					<button class="warning" v-if="killedTime" @click="start">
 						Resume
 					</button>
 
 					<button class="danger" v-if="killedTime" @click="resetKilledTime">
 						Reset
+					</button>
+
+					<button class="success icon" v-if="killedTime">
+						Save Track
 					</button>
 				</div>
 
@@ -80,6 +87,7 @@ export default {
 	  	formattedTime: "00:00:00",
 	  	ticker: undefined,
 	  	helper: false,
+	  	loading: false,
 	  	killedTime: localStorage.getItem('killedTime') || null,
 
 	  	projectOptions: [
@@ -142,6 +150,18 @@ export default {
 	  	window.clearInterval(this.ticker);
 	  	this.state = 'finished';
 	  	this.helper = true;
+	  },
+	  store() {
+	  	this.loading = true;
+	  	//this.$store.dispatch('publishTrack', { time: this.formattedTime, project_id: this.fields.project_id, tool_used: this.fields.tool_used })
+	  	this.$axios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.auth.token}`;
+			this.$axios.post('/track', { time: this.formattedTime, totalTime: this.currentTime })
+				.then(res => { console.log(res); this.loading = false; }).catch(err => { console.log(err); this.loading = false; });	  	
+
+	  	this.currentTime = 0;
+	  	this.formattedTime = "00:00:00";
+	  	this.state = 'stopped';
+	  	this.helper = false;
 	  },
 	  onRefresh() {
 	  	if (localStorage.getItem('killedTime')) {

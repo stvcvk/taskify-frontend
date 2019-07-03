@@ -3,11 +3,11 @@
 		<div class="dropdown-select">
 			<div class="dropdown-name">
 				{{ value ? value.name : placeholder }} 
-				<img src="~/assets/arrow-down.svg" alt="arrow-down" @click="show = !show">
+				<img src="~/assets/arrow-down.svg" alt="arrow-down" :class="{ 'rotate': show == true }" @click="show = !show">
 			</div>
 
 			<transition name="dropdown-fade">
-			<ul class="dropdown-options" v-if="show">
+			<ul class="dropdown-options" v-if="show" v-on-clickaway="onClickAway">
 				<li class="dropdown-option" v-for="option in options" @click="selectOption(option)">
 					<label> 
 						<input type="checkbox" :value="option"> 
@@ -24,8 +24,10 @@
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
 export default {
 	name: 'dropdown',
+	mixins: [ clickaway ],
 	props: ['options', 'value', 'placeholder'],
 	data() {
 		return {
@@ -37,7 +39,10 @@ export default {
 		selectOption(option) {
 			this.$emit('input', option);
 			this.show = false;
-		}
+		},
+		onClickAway() {
+			this.show = false;
+		},
 	}
 }
 </script>
