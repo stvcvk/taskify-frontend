@@ -35,12 +35,10 @@
 	
 		<ul class="menu" style="background: #F8F8F8;">
 			<div class="menu-container">
-				<li :class="{ active: menu == 'dashboard' }" @click="menu = 'dashboard'">Dashboard</li>
-				<li :class="{ active: menu == 'menage' }" @click="menu = 'menage'">Menage</li>
-				<li :class="{ active: menu == 'settings' }" @click="menu = 'settings'">Settings</li>
-				<li>Trackings</li>
-				<li>Projects</li>
-				<li>Tools</li>
+				<li :class="{ active: currentPage == 'home' }" @click="$router.push('/home')">Home</li>
+				<li :class="{ active: currentPage == 'trackings' }" @click="$router.push('/trackings')">Trackings</li>
+				<li :class="{ active: currentPage == 'projects' }" @click="$router.push('/projects')">Projects</li>
+				<li :class="{ active: currentPage == 'settings' }">Tools</li>
 			</div>
 		</ul>
 	</div>
@@ -57,8 +55,12 @@ export default {
 	  	menu: 'dashboard',
 	  	dropdown: false,
 	  	isDropdownActive: false,
-	  	
+	  	currentPage: $nuxt.$route.name,
+	  	trackings: [],
 	  }
+	},
+	created() {
+		this.get();
 	},
 	methods: {
 		logout() {
@@ -67,6 +69,15 @@ export default {
 
 	  	hide() {
 	  		if (this.isDropdownActive == true) this.isDropdownActive = false;
+	  	},
+
+	  	get() {
+			this.$axios.get('/track').then(res => {
+				this.trackings = res.data;
+				//let weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+			});
+
+
 	  	}
 	}
 }

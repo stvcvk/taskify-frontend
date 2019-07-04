@@ -83,32 +83,32 @@ export default {
 	data() {
 		return {
 			state: 'stopped',
-	  	currentTime: 0,
-	  	formattedTime: "00:00:00",
-	  	ticker: undefined,
-	  	helper: false,
-	  	loading: false,
-	  	killedTime: localStorage.getItem('killedTime') || null,
+	  		currentTime: 0,
+	  		formattedTime: "00:00:00",
+	  		ticker: undefined,
+	  		helper: false,
+	  		loading: false,
+	  		killedTime: localStorage.getItem('killedTime') || null,
 
-	  	projectOptions: [
-	  		{ id: 0, name: 'Test' },
-	  		{ id: 1, name: 'Test 2' },
-	  		{ id: 2, name: 'Test 3' },
-	  		{ id: 3, name: 'Test 4' },
-	  		{ id: 4, name: 'Test 5' },
-	  		{ id: 5, name: 'Test 6' },
-	  	],
-	  	selectedProject: null,
+		  	projectOptions: [
+		  		{ id: 0, name: 'Test' },
+		  		{ id: 1, name: 'Test 2' },
+		  		{ id: 2, name: 'Test 3' },
+		  		{ id: 3, name: 'Test 4' },
+		  		{ id: 4, name: 'Test 5' },
+		  		{ id: 5, name: 'Test 6' },
+		  	],
+		  	selectedProject: null,
 
-	  	toolOptions: [
-	  		{ id: 0, name: 'Test' },
-	  		{ id: 1, name: 'Test 2' },
-	  		{ id: 2, name: 'Test 3' },
-	  		{ id: 3, name: 'Test 4' },
-	  		{ id: 4, name: 'Test 5' },
-	  		{ id: 5, name: 'Test 6' },
-  		],
-  		selectedTool: null,
+		  	toolOptions: [
+		  		{ id: 0, name: 'Test' },
+		  		{ id: 1, name: 'Test 2' },
+		  		{ id: 2, name: 'Test 3' },
+		  		{ id: 3, name: 'Test 4' },
+		  		{ id: 4, name: 'Test 5' },
+		  		{ id: 5, name: 'Test 6' },
+	  		],
+	  		selectedTool: null,
 		}
 	},
 	mounted() {
@@ -158,6 +158,7 @@ export default {
 			this.$axios.post('/track', { time: this.formattedTime, totalTime: this.currentTime })
 				.then(res => { console.log(res); this.loading = false; }).catch(err => { console.log(err); this.loading = false; });	  	
 
+		if (this.killedTime) this.killedTime = null; localStorage.removeItem('killedTime');
 	  	this.currentTime = 0;
 	  	this.formattedTime = "00:00:00";
 	  	this.state = 'stopped';

@@ -30,6 +30,7 @@ export default {
   */
   plugins: [
     '~/plugins/axios',
+    '~plugins/vue-chartjs.js',
   ],
   /*
   ** Nuxt.js modules
