@@ -71,6 +71,14 @@ header .logo img {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .3);
 }
 
+/* *** Window Timer *** */
+.window-timer {
+	&-container {
+		width: 480px;
+		margin: 0 auto;
+	}
+}
+
 @media (max-width: 900px) {
 	// In Prgoress
 }

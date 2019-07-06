@@ -6,15 +6,15 @@
 					<img src="~/assets/Frame.jpg" alt="logo" style="cursor: pointer" @click="$router.push('/home')">
 				</div>
 				<div style="flex-grow: 1;"></div>
-				<div class="inline" v-if="!$store.state.auth.user">
+				<div class="inline" v-if="!user">
 					<n-link to="/login" class="button full-size">Sign In</n-link>
 					<n-link to="/register" class="button full-size darker">Sign Up</n-link>
 				</div>
 
-				<div class="inline" v-if="$store.state.auth.user">
+				<div class="inline" v-if="user">
 					<div class="dropdown">
 						<div class="dropdown-title">
-							{{ $store.state.auth.user.name }}
+							{{ user.name }}
 							<img src="~/assets/icons/down-arrow.svg" alt="down arrow" id="icon-size" @click="isDropdownActive = !isDropdownActive">
 						</div>
 						<transition name="dropdown-fade">
@@ -45,10 +45,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { mixin as clickaway } from 'vue-clickaway';
 
 export default {
 	mixins: [ clickaway ],
+	computed: mapState({ user: state => state.auth.user, }),
 	data() {
 	  return {
 	  	active: false,

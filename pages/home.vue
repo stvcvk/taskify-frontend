@@ -6,8 +6,7 @@
 			<div class="card">
 				<div class="card-title">Track Time</div>
 				<div class="card-body">
-						<input type="text" placeholder="Name">
-						<Timer />
+					<Timer />
 				</div>
 			</div>
 
@@ -63,7 +62,7 @@ export default {
 			return number > 9 ? number : "0" + number;
 		},
 		openNewWindow() {
-			window.open('/trackings', '_blank', "width=405,height=145,resizable=no").focus();
+			window.open('/window-timer', '_blank', "width=500,height=185,resizable=no,location=no").focus();
 		}
 	}
 }

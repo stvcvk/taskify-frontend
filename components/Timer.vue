@@ -123,8 +123,8 @@ export default {
 		}
 	},
 	methods: {
-		start() { 
-			if (this.killedTime) localStorage.removeItem('killedTime'); this.killedTime = null;
+	start() { 
+		if (this.killedTime) localStorage.removeItem('killedTime'); this.killedTime = null;
 	  	if (this.state !== 'running') {
 	  		this.tick(); 
 	  		this.state = 'running'; 

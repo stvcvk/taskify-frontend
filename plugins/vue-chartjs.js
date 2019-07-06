@@ -105,8 +105,6 @@ Vue.component('my-line', {
   			return item.day;
   		});
 
-  		this.labels.push('Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday');
-
   		this.rows = res.data.map((item) => {
   			return item.total;
   		});
@@ -149,11 +147,26 @@ Vue.component('my-line', {
 				  callbacks: {
 				    label: function(tooltipItem, data) {
 				    	let totalTime = tooltipItem.value;
+							
+							if (totalTime < 3600) {
+            		let remainder = totalTime % 3600;
+	            	return (remainder / 60).toFixed(0)+"m";
+	          	}
+
+	          	if (totalTime > 3600) {
+	          		let hours = (totalTime / 3600).toFixed(0);
+	          		let remainder = totalTime % 3600;
+	          		let minutes = (remainder / 60).toFixed(0);
+	          		return `${hours}h ${minutes}m`;
+          		}
+
+	          	/*
 				    	let hours = (totalTime / 3600).toFixed(0);
 				    	let remainder = totalTime % 3600;
 				    	let minutes = (remainder / 60).toFixed(0);
 				    	let seconds = (remainder % 60).toFixed(0);
 				    	return `${hours > 9 ? hours : "0"+hours}:${minutes > 9 ? minutes : "0"+minutes}:${seconds > 9 ? seconds : "0"+seconds}`;
+				    	*/
 				    }
 			  },
 			},
