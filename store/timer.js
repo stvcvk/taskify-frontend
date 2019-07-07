@@ -35,6 +35,12 @@ export const mutations = {
 		state.restoredTime = payload;
 	},
 
+	FETCH_RESTORED_TIME(state) {
+		let time = JSON.parse(state.restoredTime);
+		state.currentTime = time.currentTime;
+		state.formattedTime = time.formattedTime;
+	},
+
 	RESET_RESTORED_TIME(state) {
 		state.restoredTime = null;
 		localStorage.removeItem('restored_time');
