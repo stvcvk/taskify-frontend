@@ -105,10 +105,15 @@ Vue.component('my-line', {
   			return item.day;
   		});
 
+  		this.labels[7] = this.labels[0];
+  		this.labels.splice(0, 1);
+
   		this.rows = res.data.map((item) => {
   			return item.total;
   		});
 
+  		this.rows[7] = this.rows[0];
+  		this.rows.splice(0, 1);
 
   		this.renderChart({
   			labels: this.labels,

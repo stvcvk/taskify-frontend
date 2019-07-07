@@ -6,6 +6,7 @@
 			<div class="card">
 				<div class="card-title">Track Time</div>
 				<div class="card-body">
+					<NewTimer />
 					<Timer />
 				</div>
 			</div>
@@ -45,10 +46,11 @@
 <script>
 import Header from '~/components/Header.vue'
 import Timer from '~/components/Timer.vue'
+import NewTimer from '~/components/NewTimer.vue'
 import chart from '~/components/chart.vue'
 export default {
 	middleware: 'authenticated',
-	components: { Header, Timer, chart },
+	components: { Header, Timer, NewTimer, chart },
 	data() {
 		return {
 			timeRendered: {},

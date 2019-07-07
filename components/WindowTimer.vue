@@ -35,7 +35,7 @@
 
 			<div v-if="restored">
 				<button class="danger" @click="reset">Reset</button>
-				<button>Resume</button>
+				<button @click="start">Resume</button>
 				<button class="success" @click="$bus.$emit('modal-close')">Save Track</button>
 			</div>
 

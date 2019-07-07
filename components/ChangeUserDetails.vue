@@ -2,7 +2,7 @@
 	<div class="card" style="margin: 24px 0;">
 		<div class="card-title">Profile Info</div>
 		<div class="card-body">
-			<transition name="alert-fade">
+			<transition name="dropdown-fade">
 				<strong class="success filled" v-if="success">{{ success }}</strong>
 			</transition>
 
