@@ -25,9 +25,9 @@ export const mutations = {
 
 	SET_FORMATTED_TIME(state, seconds) {
 		let measturedTime = new Date(null);
-  	measturedTime.setSeconds(seconds);
-  	let MHSTime = measturedTime.toISOString().substr(11, 8);
-  	state.formattedTime = MHSTime;
+	  	measturedTime.setSeconds(seconds);
+	  	let MHSTime = measturedTime.toISOString().substr(11, 8);
+	  	state.formattedTime = MHSTime;
 	},
 
 	// RESTORED TIME MUTATIONS

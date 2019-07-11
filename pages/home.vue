@@ -2,6 +2,35 @@
 	<div>
 		<Header />
 
+		<!--
+		<dropdown :options="projectOptions" placeholder="Select Project" v-model="selectedProject" />
+
+		<modal title="Save Track">
+			<div class="form-group">
+				<label for="" class="form-label">Project Name</label>
+				<dropdown :options="projectOptions" placeholder="Select Project" v-model="selectedProject"/>
+				<strong class="danger">Project is required!</strong>
+			</div>
+
+			<div class="form-group">
+				<label class="form-label">Tool Used</label>
+				<dropdown :options="toolOptions" placeholder="Select Tool" v-model="selectedTool"/>
+			</div>
+
+			<div class="form-group">
+				<label class="form-label">Bill Hour</label>
+			</div>
+
+			<div class="form-group">
+				<button class="rounded loading sml">
+					<span class="spinner"></span>
+					Save Track
+				</button>
+				<button class="rounded warning sml" @click="$bus.$emit('modal-close')">Cancel</button>
+			</div>
+		</modal>
+	-->
+
 		<div class="container">
 			<div class="card">
 				<div class="card-title">Track Time</div>
@@ -48,12 +77,33 @@ import Header from '~/components/Header.vue'
 import Timer from '~/components/Timer.vue'
 import NewTimer from '~/components/NewTimer.vue'
 import chart from '~/components/chart.vue'
+import modal from '~/components/modal.vue'
+import dropdown from '~/components/dropdown.vue'
 export default {
 	middleware: 'authenticated',
-	components: { Header, Timer, NewTimer, chart },
+	components: { Header, Timer, NewTimer, chart, modal, dropdown },
 	data() {
 		return {
 			timeRendered: {},
+			projectOptions: [
+	  		{ id: 0, name: 'Test' },
+	  		{ id: 1, name: 'Test 2' },
+	  		{ id: 2, name: 'Test 3' },
+	  		{ id: 3, name: 'Test 4' },
+	  		{ id: 4, name: 'Test 5' },
+	  		{ id: 5, name: 'Test 6' },
+	  	],
+	  	selectedProject: null,
+
+	  	toolOptions: [
+	  		{ id: 0, name: 'Test' },
+	  		{ id: 1, name: 'Test 2' },
+	  		{ id: 2, name: 'Test 3' },
+	  		{ id: 3, name: 'Test 4' },
+	  		{ id: 4, name: 'Test 5' },
+	  		{ id: 5, name: 'Test 6' },
+  		],
+  		selectedTool: null,
 		}
 	},
 	created() {

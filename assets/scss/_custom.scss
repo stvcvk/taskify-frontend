@@ -83,11 +83,11 @@ header .logo img {
 .modal {
 	display: block;
 	position: fixed;
-	z-index: 1;
+	z-index: 10;
 	left: 0;
 	top: 0;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	overflow: auto;
 	background-color: rgba(0, 0, 0, .4);
 }
@@ -97,7 +97,69 @@ header .logo img {
 	margin: 15% auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 80%;
+	border-radius: 5px;
+	width: 50%;
+	z-index: 999;
+}
+
+/* *** Project Card *** */
+.project-card input {
+	margin-bottom: 12px;
+}
+
+/* *** Each Client *** */
+.each-client {
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+	background: #fff;
+	display: block;
+	padding: 12px;
+	margin-bottom: 18px;
+}
+
+/* *** Table Design *** */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	font-family: 'Inter UI';
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .15);
+}
+
+.table input {
+	width: 100%;
+}
+
+.table th {
+	padding: 15px 12px;
+	background: #f1f1f2;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.table td {
+	padding: 18px 12px;
+	background: #fcfcfc;
+	border-bottom: 1px solid #ccc;
+	font-size: 14px;
+}
+
+.table td.control {
+	width: 15%;
+}
+
+.table tr:nth-child(even) {background-color: #f2f2f2 !important;}
+
+.error {
+	padding: 10px;
+	text-align: center;
+	background: #fff;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
+}
+
+.table button { float: right; height: 26px; }
+
+
+.table th {
+	text-align: left;
 }
 
 @media (max-width: 900px) {

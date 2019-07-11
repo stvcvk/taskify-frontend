@@ -3,6 +3,7 @@ $success: #2ECC71;
 $warning: #F7CA18;
 $danger: #CF000F;
 
+/*
 .form-group, .form-label, .form-input, strong {
 	display: block;
 }
@@ -74,4 +75,81 @@ strong.success.filled {
 
 .alert-fade-enter, .alert-fade-leave-to {
     opacity: 0;
+}
+
+*/
+
+.form-group, .form-group > * {
+	display: block;
+}
+
+.form-group {
+	margin-bottom: 32px;
+	&:last-child { margin-bottom: 0; }
+}
+
+.form-group .form-label {
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-size: 14.5px;
+	color: #0D3F67;
+	margin-bottom: 12px;
+}
+
+.form-group .form-input {
+	font-size: 15px;
+	background-color: #FAFAFA;
+	color: #002e54;
+	width: 330px;
+	height: 36px;
+	padding: 0 12px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
+	border-radius: 3px;
+}
+
+.form-group .form-button {
+	font-family: "Inter UI", sans-serif;
+	font-size: 16px;
+	background-color: #0D3F67;
+	width: 330px;
+	height: 40px;
+}
+
+
+strong {
+	font-size: 15px;
+	font-weight: 400;
+	margin: 0 0 20px 0;
+}
+
+strong.filled {
+	padding: 10px 12px;
+	border-radius: 3px;
+}
+
+strong.danger { color: $danger; }
+
+strong.danger.filled {
+	background: #ffe7e8;
+}
+
+strong.warning { color: $warning; }
+
+strong.success { color: $success; }
+
+strong.success.filled {
+	background: #DBFFEA;
+}
+
+.outline-card {
+	padding: 32px 64px !important;
+}
+
+.form-link-text {
+	text-decoration: none;
+	text-align: center;
+	margin-top: 32px;
+	color: #0D3F67;
+	font-size: 15px;
+	cursor: pointer;
 }

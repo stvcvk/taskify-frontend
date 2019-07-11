@@ -1,5 +1,22 @@
 <template>
 	<div class="timer">
+		<!--
+		<modal>
+			<div class="form-group">
+				<label class="form-label">Project Name</label>
+				<dropdown :options="projectOptions" placeholder="Select Project" v-model="selectedProject"/>
+			</div>
+
+			<div class="form-group">
+				<label class="form-label">Option Name</label>
+				<dropdown :options="toolOptions" placeholder="Select Project" v-model="selectedTool"/>
+			</div>
+
+			<button class="sml rounded">Save</button>
+			<button class="warning sml rounded" @click="$bus.$emit('modal-close')">Cancel</button>
+		</modal>
+	-->
+
 		<div class="time">
 			<label>Time</label>
 			<span>{{ formattedTime }}</span>
@@ -9,7 +26,7 @@
 			<label>Project name</label>
 			<span>My Newiest Project</span>
 		</div>
-
+		
 		<div class="helper" v-if="helper" v-on-clickaway="closeHelper">
 			<div class="form-group">
 				<label for="" class="form-label">Project Name</label>
@@ -74,11 +91,12 @@
 
 <script>
 import dropdown from '~/components/dropdown.vue';
+import modal from '~/components/modal.vue'
 import { mixin as clickaway } from 'vue-clickaway';
 
 export default {
 	mixins: [ clickaway ],
-	components: { dropdown },
+	components: { dropdown, modal },
 	name: 'timer',
 	data() {
 		return {

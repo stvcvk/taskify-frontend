@@ -133,7 +133,11 @@ Vue.component('my-line', {
 								callback: function(label, index, labels) {
 			          	if (label < 3600) {
 			            	let remainder = label % 3600;
-			            	return (remainder / 60).toFixed(0)+"m";
+			            	if (remainder) {
+			            		return (remainder / 60).toFixed(0)+"m " + (remainder / 60).toFixed(2) + "s";
+			            	} else {
+			            		return (remainder / 60).toFixed(0)+"m";
+			          		}
 			          	}
 
 			          	if (label > 3600) {

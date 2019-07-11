@@ -7,7 +7,7 @@
 			</div>
 
 			<transition name="dropdown-fade">
-			<ul class="dropdown-options" v-if="show" v-on-clickaway="onClickAway">
+			<ul class="dropdown-options" id="ddo" v-if="show" v-on-clickaway="onClickAway">
 				<li class="dropdown-option" v-for="option in options" @click="selectOption(option)">
 					<label> 
 						<input type="checkbox" :value="option"> 
@@ -34,7 +34,7 @@ export default {
 			show: false,
 		};
 	},
-
+	
 	methods: {
 		selectOption(option) {
 			this.$emit('input', option);

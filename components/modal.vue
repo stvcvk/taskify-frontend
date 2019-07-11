@@ -1,11 +1,11 @@
 <template>
 	<transition name="dropdown-fade">
-	<div class="modal" v-if="visible">
-		<div class="modal-content" v-on-clickaway="hide">
-			<h2>{{ title }}</h2>
-			<slot></slot>
+		<div class="modal" v-if="visible">
+			<div class="modal-content" v-on-clickaway="hide">
+				<h2>{{ title }}</h2>
+				<slot></slot>
+			</div>
 		</div>
-	</div>
 	</transition>
 </template>
 
@@ -24,13 +24,14 @@ export default {
 	created() {
 		this.$bus.$on('modal-close', () => {
 			this.visible = !this.visible;
+			//document.body.style.overflow = 'hidden';
 		});
 	},
 	methods: {
 		hide() {
 			this.visible = false;
+			//document.body.style.overflow = 'auto';
 		},
-
-	}
+	},
 }
 </script>

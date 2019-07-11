@@ -38,6 +38,7 @@
 				<li :class="{ active: currentPage == 'home' }" @click="$router.push('/home')">Home</li>
 				<li :class="{ active: currentPage == 'trackings' }" @click="$router.push('/trackings')">Trackings</li>
 				<li :class="{ active: currentPage == 'projects' }" @click="$router.push('/projects')">Projects</li>
+				<li :class="{ active: currentPage == 'clients' }" @click="$router.push('/clients')">Clients</li>
 				<li :class="{ active: currentPage == 'settings' }">Tools</li>
 			</div>
 		</ul>

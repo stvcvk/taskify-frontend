@@ -2,13 +2,14 @@
 	<div>
 		<div class="centered m-t-1">
 			<div class="login outline-card">
-				<img id="logo" src="~/assets/Frame.jpg"/>
+				<!--<img id="logo" src="~/assets/Frame.jpg"/>-->
 
 				<form @submit.prevent="submit">
-					<strong class="danger filled" v-if="error">{{ error }}</strong>
-
 					<div class="form-group">
-						<label class="form-label">Email Address</label>
+						<strong class="danger filled" v-if="error">{{ error }}</strong>
+					</div>
+					<div class="form-group">
+						<label class="form-label">Email Address / Username</label>
 						<input class="form-input" v-model="fields.username" type="text">
 					</div>
 
@@ -18,10 +19,12 @@
 					</div>
 
 					<div class="form-group">
-						<button class="loading" style="width: 100%;">
+						<button class="loading form-button" style="width: 100%;">
 							<span class="spinner" v-if="spinner"></span>
 							Sign In
 						</button>
+
+						<n-link to="/register" class="form-link-text">Register Now</n-link>
 					</div>
 				</form>
 			</div>
